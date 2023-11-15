@@ -8,6 +8,8 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import CloseIcon from "../icons/closeIcon";
 import PlusIcon from "../icons/plusIcon";
 import MinusIcon from "../icons/minusIcon";
+import { useStore } from "effector-react";
+import { $isCartOpened, closeCart, openCart } from "@/stores/cartStore";
 
 interface IConfiguration {
   title: string;
@@ -45,18 +47,14 @@ export interface ICartProps {
 }
 
 const Cart = (cart: ICartProps) => {
-  const [open, setOpen] = useState(false);
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+  const isCartOpened = useStore($isCartOpened);
   const [promoCodeInput, setPromoCodeInput] = useState(cart.promoCode?.code);
   return (
     <SwipeableDrawer
       anchor="bottom"
-      open={true}
-      onClose={toggleDrawer(false)}
-      onOpen={toggleDrawer(true)}
+      open={isCartOpened}
+      onOpen={() => openCart()}
+      onClose={() => closeCart()}
       swipeAreaWidth={30}
       disableSwipeToOpen={false}
       ModalProps={{

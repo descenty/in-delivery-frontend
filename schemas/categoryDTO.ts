@@ -1,7 +1,9 @@
 import { UUID } from "crypto";
+import { Product } from "./product";
 
 export type Category = {
-  id: UUID;
+  slug: string;
   title: string;
   image: string;
+  products?: Product[];
 };
