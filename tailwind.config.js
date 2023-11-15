@@ -15,6 +15,10 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        phone: "420px",
+        lg: "900px",
+      }
     },
   },
   darkMode: "class",

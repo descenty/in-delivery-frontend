@@ -14,7 +14,7 @@ const categories: Category[] = [
   },
   {
     id: randomUUID(),
-    title: "Молоко, сыр, яйца, растительные продукты",
+    title: "Молоко, сыр, яйца",
     image: "catalog/milk.png",
   },
   {

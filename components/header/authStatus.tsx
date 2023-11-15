@@ -64,9 +64,14 @@ export default function AuthStatus() {
   }
 
   return (
-    <Button className="text-md px-4 flex flex-row gap-2 items-center" color="primary" variant="flat" onClick={() => signIn("keycloak")}>
+    <Button
+      className="text-md px-4 flex flex-row gap-2 items-center h-12"
+      color="primary"
+      variant="flat"
+      onClick={() => signIn("keycloak")}
+    >
       <UserIcon />
-      Войти
+      <span className="max-md:hidden">Войти</span>
     </Button>
   );
 }

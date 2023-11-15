@@ -21,6 +21,8 @@ import { usePathname } from "next/navigation";
 import { AcmeLogo } from "../icons/acmeLogo";
 import { useState } from "react";
 import CatalogIcon from "../icons/catalogIcon";
+import CartButton from "../cart/cartButton";
+import CatalogButton from "../catalog/catalogButton";
 
 interface NavLink {
   title: string;
@@ -43,69 +45,7 @@ const HeaderNavigation = ({ areas }: { areas: AreaDTO[] | undefined }) => {
   const activeLink = navLinks.find((link) => link.href === pathName);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
-          <Link href="/" className="font-bold text-xl">
-            доставка
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex flex-row items-center gap-12" justify="center">
-        <Link href="/" className="font-bold text-xl">
-          доставка
-        </Link>
-        <NavbarItem>
-          <AreaSelect areas={areas} />
-        </NavbarItem>
-        <Button color="primary" className="text-md flex flex-row items-center">
-          <div className="mb-[2px]">
-            <CatalogIcon />
-          </div>
-          Каталог
-        </Button>
-        {navLinks.map((link) => (
-          <NavbarItem isActive={link === activeLink} key={link.href}>
-            <Link href={link.href} color={link === activeLink ? "primary" : "foreground"}>
-              {link.title}
-            </Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <AuthStatus />
-        {/* <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Вы вошли, как</p>
-              <p className="font-semibold">Александр Быченков</p>
-            </DropdownItem>
-            <DropdownItem key="settings">Мои настройки</DropdownItem>
-            <DropdownItem key="analytics">Аналитика</DropdownItem>
-            <DropdownItem key="help_and_feedback">Помощь</DropdownItem>
-            <DropdownItem key="logout" color="danger">
-              Выйти
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown> */}
-      </NavbarContent>
+    <Navbar isBordered className="h-20" isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarMenu>
         {navLinks.map((link) => (
           <NavbarMenuItem key={link.href}>
@@ -115,6 +55,33 @@ const HeaderNavigation = ({ areas }: { areas: AreaDTO[] | undefined }) => {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <NavbarContent>
+        <div className="sm:hidden grid grid-cols-3 w-full gap-12">
+          <NavbarMenuToggle className="place-self-start" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+          <Link href="/" className="font-bold text-xl place-self-center">
+            доставка
+          </Link>
+          <AuthStatus />
+        </div>
+        <div className="hidden sm:flex px-4 w-full flex-row items-center justify-center max-md:justify-between max-md:gap-x-8 gap-x-12">
+          <Link href="/" className="font-bold text-xl">
+            доставка
+          </Link>
+          <NavbarItem>
+            <AreaSelect areas={areas} />
+          </NavbarItem>
+          <CatalogButton />
+          {/* {navLinks.map((link) => (
+            <NavbarItem isActive={link === activeLink} key={link.href}>
+              <Link href={link.href} color={link === activeLink ? "primary" : "foreground"}>
+                {link.title}
+              </Link>
+            </NavbarItem>
+          ))} */}
+          <AuthStatus />
+          <CartButton />
+        </div>
+      </NavbarContent>
     </Navbar>
   );
 };

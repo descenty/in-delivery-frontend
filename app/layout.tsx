@@ -4,6 +4,7 @@ import { Inter, Nunito } from "next/font/google";
 import Header from "@/components/header/header";
 import { Providers } from "./providers";
 import Chat from "@/components/chat/chatLayout";
+import Cart from "@/components/cart/cart";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <Header />
           <div className="flex justify-center items-center">{children}</div>
+          <Cart />
           <Chat />
         </Providers>
       </body>
