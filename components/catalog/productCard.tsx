@@ -23,8 +23,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         "flex-col",
         "gap-2",
         "cursor-pointer",
-        "h-[300px]",
-        "w-[300px]",
+        "w-[200px]",
         "hover:text-primary"
       )}
       onClick={() => setModalProduct(product)}

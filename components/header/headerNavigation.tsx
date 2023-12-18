@@ -67,10 +67,12 @@ const HeaderNavigation = ({ areas }: { areas: AreaDTO[] | undefined }) => {
           <Link href="/" className="font-bold text-xl">
             доставка
           </Link>
-          <NavbarItem>
+          {/* <NavbarItem>
             <AreaSelect areas={areas} />
-          </NavbarItem>
-          <CatalogButton />
+          </NavbarItem> */}
+          <Link href="/">
+            <CatalogButton />
+          </Link>
           {/* {navLinks.map((link) => (
             <NavbarItem isActive={link === activeLink} key={link.href}>
               <Link href={link.href} color={link === activeLink ? "primary" : "foreground"}>
