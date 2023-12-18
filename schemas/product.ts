@@ -1,19 +1,14 @@
 export type Product = {
-  slug: string;
+  id: string;
   title: string;
   price: number;
-  image: string;
+  category_slug: string;
   description?: string;
-  category?: string;
+  image?: string;
+  best_before?: number;
+  energy?: number;
+  proteins?: number;
+  fats?: number;
+  carbohydrates?: number;
   weight?: number;
-  count?: number;
-  available?: boolean;
-  rating?: number;
-  reviews?: number;
-  nutrition?: {
-    energy: number;
-    protein: number;
-    fat: number;
-    carbohydrates: number;
-  };
 };

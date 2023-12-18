@@ -5,5 +5,7 @@ export type Category = {
   slug: string;
   title: string;
   image: string;
-  products?: Product[];
+  product_count: number;
+  subcategories: Category[];
+  products: Product[];
 };

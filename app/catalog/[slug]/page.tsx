@@ -1,17 +1,14 @@
-import ProductCard from "@/components/product/productCard";
-import { Product } from "@/schemas/product";
-import { fetchAPI } from "@/utils/fetchAPI";
+import Categories from "@/components/catalog/categories";
+import CategorySubcategories from "@/components/catalog/categorySubcategories";
+import { get_category } from "@/services/category_service";
 
 const CategoryPage = async ({ params }: { params: { slug: string } }) => {
-  const products = await fetchAPI<Product[]>(`/catalog/${params.slug}`);
+  const category = await get_category(params.slug);
   return (
-    <>
-      {products ? (
-        products.map((product) => <ProductCard key={product.slug} product={product} />)
-      ) : (
-        <h1>Товаров нет</h1>
-      )}
-    </>
+    <main className="flex flex-col justify-between w-[90%] max-w-[1200px] gap-10 pt-10">
+      <h1 className="text-3xl font-semibold">{category.title}</h1>
+      <CategorySubcategories category={category} />
+    </main>
   );
 };
 export default CategoryPage;
