@@ -1,9 +1,17 @@
-import { Card, Listbox, ListboxSection } from "@nextui-org/react";
+"use client";
 
-const RightSideMenu = () => (
-  <Card className="w-[240px] h-[84vh] px-1 py-2">
-    <Listbox variant="flat" aria-label="Listbox menu with sections"></Listbox>
-  </Card>
-);
+import { Card, Listbox, ListboxSection } from "@nextui-org/react";
+import Cart from "../cart/cart";
+import { useStore } from "effector-react";
+import { $cart } from "@/stores/cartStore";
+
+const RightSideMenu = ({ className }: { className?: string }) => {
+  const cartData = useStore($cart);
+  return (
+    <Card className={`px-1 py-2 pointer-events-auto shadow-none ${className}`}>
+      <Cart cartData={cartData} />
+    </Card>
+  );
+};
 
 export default RightSideMenu;

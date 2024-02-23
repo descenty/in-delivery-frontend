@@ -55,7 +55,7 @@ export default function AuthStatus() {
 
   return (
     <Button
-      className="text-md px-4 flex flex-row gap-2 items-center h-12"
+      className="text-md px-4 flex flex-row gap-2 items-center h-12 pointer-events-auto"
       color="primary"
       variant="flat"
       onClick={() => signIn("keycloak")}

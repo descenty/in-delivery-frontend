@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 import { Product } from "./product";
 
-export type Cart = {
+export type CartData = {
   total_price: number;
   products: CartProduct[];
 };

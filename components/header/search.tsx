@@ -15,7 +15,10 @@ const Search = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    if (!focused) setInput("");
+    if (!focused) {
+      setInput("");
+      setFilteredProducts([]);
+    }
   }, [focused]);
 
   useEffect(() => {
@@ -24,11 +27,11 @@ const Search = () => {
   }, [debouncedInput]);
 
   return (
-    <div className="flex flex-col items-center w-96">
+    <div className="relative z-10">
       <Input
         label="Поиск"
-        placeholder="Искать в каталоге"
         isClearable
+        placeholder="Искать в каталоге"
         radius="lg"
         className="w-full"
         value={input}
@@ -56,7 +59,7 @@ const Search = () => {
         startContent={<SearchIcon />}
       />
       {focused && filteredProducts.length > 0 && (
-        <div className="mt-[-20px] bg-white w-full border-small px-1 pt-6 py-2 rounded-small border-default-200 dark:border-default-100 shadow-lg">
+        <div className="bg-white w-full left-0 top-10 z-[-1] absolute border-small pt-6 py-2 rounded-small border-default-200 dark:border-default-100 shadow-lg">
           <Listbox label="Assigned to" variant="flat">
             {filteredProducts.map((product) => (
               <ListboxItem key={product.id} textValue={product.title} onClick={() => setModalProduct(product)}>

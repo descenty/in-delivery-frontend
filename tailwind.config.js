@@ -17,7 +17,7 @@ module.exports = {
       },
       screens: {
         phone: "420px",
-        lg: "900px",
+        lg: "1020px",
       }
     },
   },

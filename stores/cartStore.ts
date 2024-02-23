@@ -1,4 +1,4 @@
-import { Cart } from "@/schemas/cart";
+import { CartData } from "@/schemas/cart";
 import { Product } from "@/schemas/product";
 import { getCart } from "@/services/cart_service";
 import { createEffect, createEvent, createStore, sample } from "effector";
@@ -16,7 +16,7 @@ export const $isCartOpened = createStore(false)
   .on(openCart, () => true)
   .on(closeCart, () => false);
 
-export const $cart = createStore<Cart>({ total_price: 0, products: [] }).on(getCartFx.doneData, (_, cart) => {
+export const $cart = createStore<CartData>({ total_price: 0, products: [] }).on(getCartFx.doneData, (_, cart) => {
   return cart;
 });
 

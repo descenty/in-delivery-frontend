@@ -1,7 +1,7 @@
 "use client";
 import { Product } from "@/schemas/product";
 import clsx from "clsx";
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
 import { setModalProduct } from "@/stores/productModalStore";
 
 interface IProductCardProps {
@@ -28,7 +28,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       )}
       onClick={() => setModalProduct(product)}
     >
-      <Image className="object-cover w-full" src={product.image} alt="товар" />
+      <Image className="object-cover w-full rounded-xl" width={256} height={256} src={product.image!} alt="товар" />
       <div className="p-1 flex flex-col gap-1">
         <span className="mt-[-2px] text-[18px] text-pink-600 font-semibold">{product.price}&nbsp;₽</span>
         <span className="">{product.title}</span>

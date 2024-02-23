@@ -1,14 +1,27 @@
 "use client";
 import { Category } from "@/schemas/category";
 import { Avatar, Card, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
+import Image from "next/image";
 
-const LeftSideMenu = ({ categories }: { categories: Category[] }) => {
+const LeftSideMenu = ({ categories, className }: { categories: Category[]; className?: string }) => {
   return (
-    <Card className="w-[240px] h-[84vh] px-1 py-2">
+    <Card className={`px-1 py-2 pointer-events-auto shadow-none ${className}`}>
       <Listbox variant="flat" aria-label="Listbox menu with sections">
         <ListboxSection title="Категории" showDivider>
           {categories.map((category) => (
-            <ListboxItem key={category.slug} startContent={<Avatar radius="none" src={category.image} size="sm" />}>
+            <ListboxItem
+              className="h-[51px] flex flex-row items-center"
+              key={category.slug}
+              startContent={
+                <Image
+                  className="h-full w-auto object-contain rounded-full bg-default"
+                  src={category.image}
+                  alt="category image"
+                  width={64}
+                  height={64}
+                />
+              }
+            >
               {category.title}
             </ListboxItem>
           ))}
