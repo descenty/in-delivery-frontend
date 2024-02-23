@@ -11,7 +11,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import AreaSelect from "@/components/header/area/areaSelect";
 import { SearchIcon } from "@/components/icons/searchIcon";
@@ -23,6 +22,12 @@ import { useState } from "react";
 import CatalogIcon from "../icons/catalogIcon";
 import CartButton from "../cart/cartButton";
 import CatalogButton from "../catalog/catalogButton";
+import Link from "next/link";
+import Search from "./search";
+import Logo from "./logo";
+import RestaurantSelect from "./restaurantSelect";
+import MiddleHeaderCard from "./middleHeaderCard";
+import UserHeaderCard from "./userHeaderCard";
 
 interface NavLink {
   title: string;
@@ -45,46 +50,26 @@ const HeaderNavigation = ({ areas }: { areas: AreaDTO[] | undefined }) => {
   const activeLink = navLinks.find((link) => link.href === pathName);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <Navbar isBordered className="h-20" isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
-      <NavbarMenu>
-        {navLinks.map((link) => (
-          <NavbarMenuItem key={link.href}>
-            <Link color={link === activeLink ? "primary" : "foreground"} className="w-full" href={link.href} size="lg">
-              {link.title}
+    <div className="flex flex-row w-full gap-4">
+      <Logo />
+      <MiddleHeaderCard />
+      <UserHeaderCard />
+      {/* <div className="h-40 w-full flex flex-col justify-start py-4 bg-white">
+        <div className="flex flex-col gap-6">
+          <div className="hidden sm:flex px-4 w-full flex-row items-center justify-center max-md:justify-between max-md:gap-x-8 gap-x-12">
+            <Link href="/" className="font-bold text-xl text-primary">
+              InDelivery
             </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-      <NavbarContent>
-        <div className="sm:hidden grid grid-cols-3 w-full gap-12">
-          <NavbarMenuToggle className="place-self-start" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-          <Link href="/" className="font-bold text-xl place-self-center">
-            доставка
-          </Link>
-          <AuthStatus />
+            <Link href="/">
+              <CatalogButton />
+            </Link>
+            <AuthStatus />
+            <CartButton />
+          </div>
         </div>
-        <div className="hidden sm:flex px-4 w-full flex-row items-center justify-center max-md:justify-between max-md:gap-x-8 gap-x-12">
-          <Link href="/" className="font-bold text-xl">
-            доставка
-          </Link>
-          {/* <NavbarItem>
-            <AreaSelect areas={areas} />
-          </NavbarItem> */}
-          <Link href="/">
-            <CatalogButton />
-          </Link>
-          {/* {navLinks.map((link) => (
-            <NavbarItem isActive={link === activeLink} key={link.href}>
-              <Link href={link.href} color={link === activeLink ? "primary" : "foreground"}>
-                {link.title}
-              </Link>
-            </NavbarItem>
-          ))} */}
-          <AuthStatus />
-          <CartButton />
-        </div>
-      </NavbarContent>
-    </Navbar>
+        <Search />
+      </div> */}
+    </div>
   );
 };
 

@@ -38,9 +38,9 @@ export default function AuthStatus() {
   } else if (session) {
     localStorage.setItem("user", JSON.stringify(session.user));
     return (
-      <div className="flex flex-row gap-6 items-center">
-        Вошли, как {session.user?.name}
-        <Button
+      <div className="flex flex-row gap-6 items-center font-semibold">
+        {session.user?.name}
+        {/* <Button
           color="secondary"
           variant="flat"
           onClick={() => {
@@ -48,7 +48,7 @@ export default function AuthStatus() {
           }}
         >
           Выйти
-        </Button>
+        </Button> */}
       </div>
     );
   }

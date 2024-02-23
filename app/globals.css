@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body::-webkit-scrollbar { */
-/* displaсy: none; */
-/* } */
+html {
+  width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* body::-webkit-scrollbar {
+  display: none;
+} */
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

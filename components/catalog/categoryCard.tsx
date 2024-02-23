@@ -11,9 +11,9 @@ const CategoryCard = ({ category, onClick }: { category: Category; onClick?: () 
   return (
     <Card
       onClick={onClick}
-      className="w-full aspect-square flex flex-col justify-between p-4 bg-gray-100 hover:bg-gray-200 cursor-pointer"
+      className="w-full aspect-square flex flex-col justify-between p-4 bg-gray-100 hover:bg-gray-200 cursor-pointer z-10"
     >
-      <div className="absolute flex flex-col gap-1 max-sm:text-xs max-md:text-sm font-[500] tracking-tighter w-[80%] z-10">
+      <div className="absolute flex flex-col gap-1 max-sm:text-xs max-md:text-sm font-[500] tracking-tighter w-[80%]">
         <span>{category.title}</span>
         <span className="text-gray-500">{category.product_count} товаров</span>
       </div>

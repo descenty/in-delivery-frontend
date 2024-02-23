@@ -9,7 +9,7 @@ export const getCart = async (): Promise<Cart> => {
   const cart = (
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
       headers: {
-        Authorization: `Bearer ${(await getSession()).access_token}`,
+        Authorization: `Bearer ${(await getSession())!.access_token}`,
       },
     })
   ).data;
