@@ -1,6 +1,7 @@
+import { openNewAddressPanel } from "@/stores/newAddressPanelStore";
 import { Select, SelectItem } from "@nextui-org/react";
 
-const RestaurantSelect = ({ className }: { className: string }) => (
+const AddressSelect = ({ className }: { className: string }) => (
   <Select
     label="Адрес доставки"
     className={className}
@@ -14,7 +15,10 @@ const RestaurantSelect = ({ className }: { className: string }) => (
         {address}
       </SelectItem>
     ))}
+    <SelectItem key="new-address" value="new-address" onClick={() => openNewAddressPanel()}>
+      <span className="font-semibold">Добавить новый адрес</span>
+    </SelectItem>
   </Select>
 );
 
-export default RestaurantSelect;
+export default AddressSelect;

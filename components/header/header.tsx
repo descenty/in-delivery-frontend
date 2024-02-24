@@ -25,7 +25,7 @@ import CatalogButton from "../catalog/catalogButton";
 import Link from "next/link";
 import Search from "./search";
 import Logo from "./logo";
-import RestaurantSelect from "./restaurantSelect";
+import RestaurantSelect from "../address/addressSelect";
 import MiddleHeaderCard from "./middleHeaderCard";
 import UserHeaderCard from "./userHeaderCard";
 
@@ -50,9 +50,9 @@ const Header = ({ className }: { className?: string }) => {
   const activeLink = navLinks.find((link) => link.href === pathName);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className={`grid grid-cols-4 w-full gap-4 rounded-xl z-20 ${className}`}>
-      <Logo className="w-full" />
-      <MiddleHeaderCard className="col-span-2" />
+    <div className={`grid grid-cols-4 w-full max-sm:gap-0 gap-4 rounded-xl z-20 ${className}`}>
+      <Logo className="w-full max-sm:hidden" />
+      <MiddleHeaderCard className="col-span-2 max-sm:col-span-3" />
       <UserHeaderCard />
       {/* <div className="h-40 w-full flex flex-col justify-start py-4 bg-white">
         <div className="flex flex-col gap-6">

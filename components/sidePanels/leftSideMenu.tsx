@@ -1,17 +1,20 @@
 "use client";
 import { Category } from "@/schemas/category";
-import { Avatar, Card, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
+import { Avatar, Card, Link, Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const LeftSideMenu = ({ categories, className }: { categories: Category[]; className?: string }) => {
+  const router = useRouter();
   return (
-    <Card className={`px-1 py-2 pointer-events-auto shadow-none ${className}`}>
+    <Card className={`px-1 pt-2 pointer-events-auto overflow-y-auto shadow-none ${className}`}>
       <Listbox variant="flat" aria-label="Listbox menu with sections">
-        <ListboxSection title="Категории" showDivider>
+        <ListboxSection classNames={{ heading: "text-sm", divider: "hidden" }} title="Категории" showDivider>
           {categories.map((category) => (
             <ListboxItem
-              className="h-[51px] flex flex-row items-center"
               key={category.slug}
+              className="h-[47px] flex flex-row items-center"
+              onClick={() => router.push(`/catalog/${category.slug}`)}
               startContent={
                 <Image
                   className="h-full w-auto object-contain rounded-full bg-default"

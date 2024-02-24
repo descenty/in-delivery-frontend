@@ -8,7 +8,7 @@ import axios from "axios";
 import { Product } from "@/schemas/product";
 import { setModalProduct } from "@/stores/productModalStore";
 
-const Search = () => {
+const Search = ({ className }: { className?: string }) => {
   const [focused, setFocused] = useState(false);
   const [input, setInput] = useState("");
   const [debouncedInput] = useDebounce(input, 100);
@@ -27,7 +27,7 @@ const Search = () => {
   }, [debouncedInput]);
 
   return (
-    <div className="relative z-10">
+    <div className={`relative z-10 ${className}`}>
       <Input
         label="Поиск"
         isClearable
@@ -67,7 +67,6 @@ const Search = () => {
                   <Avatar
                     alt={product.title}
                     className="flex-shrink-0"
-                    size="lg"
                     src={`${process.env.NEXT_PUBLIC_S3_URL}/products/${product.id}.png`}
                   />
                   <div className="flex flex-col">

@@ -10,6 +10,18 @@ body {
   overflow-x: hidden;
 }
 
+.leaflet-marker-icon {
+  width: 40px !important;
+  height: 40px !important;
+  left: -7px !important;
+  top: -7px !important;
+}
+
+.leaflet-control-container,
+.leaflet-shadow-pane {
+  display: none;
+}
+
 /* body::-webkit-scrollbar {
   display: none;
 } */

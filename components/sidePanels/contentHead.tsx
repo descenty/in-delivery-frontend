@@ -14,9 +14,13 @@ const ContentHead = () => {
       get_category(pathname.split("/")[2]).then((category) => setCardTitle(category.title));
   }, [pathname]);
   return (
-    <Card className="h-[88px] shadow-none col-span-2 max-lg:col-span-4 px-8 border-b-1 grid grid-cols-2 items-center pointer-events-auto overflow-visible">
-      {!cardTitle ? <Spinner className="pl-4" /> : <h1 className="text-2xl font-semibold">{cardTitle}</h1>}
-      <Search />
+    <Card className="max-xl:h-[150px] h-[88px] p-4 px-6 shadow-none gap-x-4 gap-y-2 row-span-2 col-span-2 max-lg:col-span-4 border-b-1 grid grid-cols-2 items-center pointer-events-auto overflow-visible">
+      {!cardTitle ? (
+        <Spinner className="pl-4" />
+      ) : (
+        <h1 className="text-2xl font-semibold max-xl:text-lg max-xl:col-span-2">{cardTitle}</h1>
+      )}
+      <Search className="max-xl:col-span-2" />
     </Card>
   );
 };

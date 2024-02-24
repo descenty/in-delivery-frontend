@@ -12,6 +12,7 @@ import { Card } from "@nextui-org/react";
 import RightSideMenu from "@/components/sidePanels/rightSideMenu";
 import Header from "@/components/header/header";
 import ContentHead from "@/components/sidePanels/contentHead";
+import NewAddressPanel from "@/components/address/newAddressPanel";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -29,19 +30,19 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html className="bg-default-100 " lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="grid grid-cols-4 pl-[16px] pr-[32px] mt-[180px] mb-24 gap-4">
+          <div className="grid grid-cols-4 pl-[16px] pr-[32px] max-xl:pr-[16px] mt-[180px] mb-24 gap-4">
             <div></div>
-            <Card className="rounded-t-none shadow-none col-span-2 max-lg:col-span-4 pt-12 pb-8 flex flex-col gap-8 mb-4">
+            <Card className="rounded-t-none shadow-none col-span-2 max-lg:col-span-4 max-xl:pt-[140px] max-[710px]:pt-[72px] pt-[72px] pb-8 mb-4 max-[710px]:mb-12 flex flex-col gap-8">
               {children}
             </Card>
             <div></div>
           </div>
-          <div className="bg-default-100 fixed top-0 left-0 w-full h-[150px]"></div>
+          <div className="bg-default-100 fixed top-0 left-0 w-full h-[150px] max-xl:h-[180px]"></div>
           {/* <div className="bg-default-100 fixed bottom-0 left-0 w-full h-[128px] bg-red-500"></div> */}
-          <div className="fixed h-[100vh] w-[100vw] pointer-events-none left-0 top-0 pl-4 pr-8">
+          <div className="fixed h-[100vh] w-[100vw] pointer-events-none left-0 top-0 pl-4 max-xl:pr-4 pr-8">
             <div className="w-full h-full flex flex-col gap-4">
-              <Header className="max-lg:bg-white" />
-              <div className="w-full h-full grid grid-cols-4 pb-8 gap-4">
+              <Header className="max-lg:bg-white flex-shrink-0" />
+              <div className="w-full h-[86%] grid grid-cols-4 gap-4">
                 <LeftSideMenu className="max-lg:hidden" categories={categories} />
                 <ContentHead />
                 <RightSideMenu className="max-lg:hidden" />
@@ -50,6 +51,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           </div>
           <Footer />
           <ProductModal />
+          <NewAddressPanel />
           {/* <Cart /> */}
           <Chat />
         </Providers>
