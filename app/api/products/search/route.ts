@@ -1,4 +1,4 @@
-import { searchProducts } from "@/services/catalog_service";
+import { searchProducts } from "@/services/catalogService";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

@@ -38,17 +38,18 @@ export default function AuthStatus() {
   } else if (session) {
     localStorage.setItem("user", JSON.stringify(session.user));
     return (
-      <div className="flex flex-row gap-6 items-center font-semibold">
+      <div className="flex flex-row flex-wrap gap-4 items-center justify-center max-md:text-[0px] font-semibold pointer-events-auto">
         {session.user?.name}
-        {/* <Button
+        <Button
           color="secondary"
           variant="flat"
+          size="sm"
           onClick={() => {
-            keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/vacancies" }));
+            keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
           }}
         >
           Выйти
-        </Button> */}
+        </Button>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import Categories from "@/components/catalog/categories";
-import { get_all_parent_categories } from "@/services/category_service";
+import { get_all_parent_categories } from "@/services/categoryService";
 
 export default async function Home() {
   const categories = await get_all_parent_categories();

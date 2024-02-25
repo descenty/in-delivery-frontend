@@ -55,7 +55,6 @@ export const authOptions = {
         // token has not expired yet, return it
         return token;
       } else {
-        // token is expired, try to refresh it
         console.log("Token has expired. Will refresh...");
         try {
           const refreshedToken = await refreshAccessToken(token);

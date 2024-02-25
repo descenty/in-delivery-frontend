@@ -1,5 +1,5 @@
 "use client";
-import { get_category } from "@/services/category_service";
+import { get_category } from "@/services/categoryService";
 import { Card, Spinner } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
