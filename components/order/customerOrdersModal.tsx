@@ -3,6 +3,8 @@ import { Order } from "@/schemas/order";
 import { getCustomerOrders } from "@/services/orderService";
 import { $isCustomerOrdersModalOpened, closeCustomerOrdersModal } from "@/stores/customerOrdersModalStore";
 import { $customerOrders, setCustomerOrders } from "@/stores/customerOrdersStore";
+import { setModalOrder } from "@/stores/orderModal";
+import { ruDate } from "@/utils/localDate";
 import { Listbox, ListboxItem, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { useStore } from "effector-react";
 import { useEffect } from "react";
@@ -36,9 +38,10 @@ const CustomerOrdersModal = () => {
                   key={order.id}
                   className="flex flex-row items-center gap-3"
                   textValue={`Заказ от ${order.created_at}`}
+                  onClick={() => setModalOrder(order)}
                 >
                   <div className="flex flex-col gap-0">
-                    <p className="whitespace-break-spaces text-base">{`Заказ от ${order.created_at}`}</p>
+                    <p className="whitespace-break-spaces text-base">{`Заказ от ${ruDate(order.created_at)}`}</p>
                     <p className="font-semibold text-[16px] text-gray-700">{order.total_price} ₽</p>
                   </div>
                 </ListboxItem>

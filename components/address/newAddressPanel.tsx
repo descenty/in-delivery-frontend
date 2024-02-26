@@ -8,7 +8,7 @@ import { $isNewAddressModalOpened, closeNewAddressModal } from "@/stores/newAddr
 import { Button, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import dynamic from "next/dynamic";
 import axiosInstance from "@/utils/axiosInstance";
-import { addDeliveryAddress, getDeliveryAddresses } from "@/services/addressService";
+import { addDeliveryAddress, getDeliveryAddresses, selectDeliveryAddress } from "@/services/addressService";
 import { setCustomer, setDeliveryAddresses } from "@/stores/customerStore";
 import { getCustomer } from "@/services/customerService";
 
@@ -69,7 +69,9 @@ const NewAddressModal = () => {
             color="primary"
             onClick={async () => {
               await addDeliveryAddress(selectedAddress!);
-              setDeliveryAddresses(await getDeliveryAddresses());
+              const deliveryAddresses = await getDeliveryAddresses();
+              setDeliveryAddresses(deliveryAddresses);
+              selectDeliveryAddress(deliveryAddresses[deliveryAddresses.length - 1].id);
               setCustomer(await getCustomer());
               closeNewAddressModal();
             }}

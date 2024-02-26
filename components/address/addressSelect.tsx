@@ -11,12 +11,16 @@ import { Key, useEffect, useState } from "react";
 import CloseIcon from "../icons/closeIcon";
 import { getCustomer } from "@/services/customerService";
 
-const AddressSelect = ({ className }: { className: string }) => {
+const AddressSelect = ({ className }: { className?: string }) => {
   const deliveryAddresses = useStore($deliveryAddresses);
   const customer = useStore($customer);
   useEffect(() => {
-    getDeliveryAddresses().then((addresses) => setDeliveryAddresses(addresses));
-    getCustomer().then((customer) => setCustomer(customer));
+    getSession().then(async (session) => {
+      if (session) {
+        setDeliveryAddresses(await getDeliveryAddresses());
+        setCustomer(await getCustomer());
+      }
+    });
   }, []);
   return (
     customer && (
@@ -31,7 +35,7 @@ const AddressSelect = ({ className }: { className: string }) => {
             setCustomer(await getCustomer());
           }
         }}
-        defaultSelectedKeys={customer?.delivery_address_id ? [customer.delivery_address_id] : []}
+        selectedKeys={customer?.delivery_address_id ? [customer.delivery_address_id] : []}
         classNames={{
           value: "text-base",
           description: "text-sm",

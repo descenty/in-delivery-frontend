@@ -15,6 +15,7 @@ import ContentHead from "@/components/sidePanels/contentHead";
 import NewAddressPanel from "@/components/address/newAddressPanel";
 import NewOrderModal from "@/components/order/newOrderModal";
 import CustomerOrdersModal from "@/components/order/customerOrdersModal";
+import OrderModal from "@/components/order/orderModal";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -59,6 +60,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <NewAddressPanel />
           <NewOrderModal />
           <CustomerOrdersModal />
+          <OrderModal />
           {/* <Cart /> */}
           {/* <Chat /> */}
         </Providers>

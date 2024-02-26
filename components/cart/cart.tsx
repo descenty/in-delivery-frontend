@@ -10,6 +10,7 @@ import { deleteProductFromCart, getCart, updateCartProduct } from "@/services/ca
 import { useState } from "react";
 import CloseIcon from "../icons/closeIcon";
 import { openNewOrderModal } from "@/stores/newOrderModalStore";
+import { setModalProduct } from "@/stores/productModalStore";
 
 const Cart = ({ cartData }: { cartData?: CartData }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +55,7 @@ const Cart = ({ cartData }: { cartData?: CartData }) => {
                       className="flex flex-row items-center gap-3"
                       textValue={cartProduct.product.title}
                       startContent={<Avatar src={cartProduct.product.image!} alt="product image" />}
+                      onClick={() => setModalProduct(cartProduct.product)}
                     >
                       <div className="flex flex-col gap-0">
                         <div className="flex flex-row justify-between items-center">

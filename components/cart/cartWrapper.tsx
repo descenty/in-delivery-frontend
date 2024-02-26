@@ -9,53 +9,18 @@ import CloseIcon from "../icons/closeIcon";
 import PlusIcon from "../icons/plusIcon";
 import MinusIcon from "../icons/minusIcon";
 import { useStore, useUnit } from "effector-react";
-import { $cart, $isCartOpened, closeCart, openCart, pageMounted } from "@/stores/cartStore";
+import { $cart, $isCartOpened, appStarted, closeCart, openCart } from "@/stores/cartStore";
 import Cart from "./cart";
-
-interface IConfiguration {
-  title: string;
-  price: number;
-}
-
-interface ICartGood {
-  id: number;
-  title: string;
-  image: string | StaticImageData;
-  imagePadding?: number;
-  configuration: IConfiguration;
-  quantity: number;
-}
-
-interface IPromoCode {
-  code: string;
-  description: string;
-  discount: number;
-}
-
-export interface ICartProps {
-  // cartGoods: ICartGood[];
-  total: number;
-  totalWithDiscount: number;
-  promoCode?: IPromoCode;
-  promoCodeError?: string;
-  maxQuantity?: number;
-  notLoaded?: boolean;
-  onSubmit?: () => void;
-  onClose?: () => void;
-  addToCart: (goodId: number, configurationTitle: string) => void;
-  removeFromCart: (goodId: number, configurationTitle: string) => void;
-  setPromoCode: (promoCode?: string) => void;
-}
 
 const CartWrapper = () => {
   const isCartOpened = useStore($isCartOpened);
   const cartData = useStore($cart);
   // const [promoCodeInput, setPromoCodeInput] = useState(cart.promoCode?.code);
-  const handlePageMount = useUnit(pageMounted);
+  const handleAppStarted = useUnit(appStarted);
 
   useEffect(() => {
-    handlePageMount();
-  }, [handlePageMount]);
+    handleAppStarted();
+  }, [handleAppStarted]);
 
   return (
     <SwipeableDrawer

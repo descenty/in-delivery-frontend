@@ -13,9 +13,12 @@ import {
 import { $modalProduct, setModalProduct } from "@/stores/productModalStore";
 import { useStore } from "effector-react";
 import Image from "next/image";
-import { addToCart } from "@/services/cartService";
+import { addToCart, getCart } from "@/services/cartService";
 import { $cart, setCart } from "@/stores/cartStore";
 import { $isNewOrderModalOpened, closeNewOrderModal } from "@/stores/newOrderModalStore";
+import AddressSelect from "../address/addressSelect";
+import { getCustomerOrders, makeOrderFromCart } from "@/services/orderService";
+import { setCustomerOrders } from "@/stores/customerOrdersStore";
 
 const NewOrderModal = () => {
   const isNewOrderModalOpened = useStore($isNewOrderModalOpened);
@@ -35,16 +38,17 @@ const NewOrderModal = () => {
         <ModalHeader className="text-xl">Новый заказ</ModalHeader>
         <ModalBody className="pb-4 pt-0">
           <Listbox variant="flat" aria-label="Listbox menu with sections">
-            {cartData.products.map((cartProduct, index) => (
+            {cartData.products.map((cartProduct, _) => (
               <ListboxItem
                 key={cartProduct.product.id}
                 className="flex flex-row items-center gap-3"
                 textValue={cartProduct.product.title}
                 startContent={
-                  <Badge content="2" color="primary">
+                  <Badge content={cartProduct.quantity} color="primary">
                     <Avatar src={cartProduct.product.image!} alt="product image" />
                   </Badge>
                 }
+                onClick={() => setModalProduct(cartProduct.product)}
               >
                 <div className="flex flex-col gap-0">
                   <p className="whitespace-break-spaces text-base">{cartProduct.product.title}</p>
@@ -55,11 +59,21 @@ const NewOrderModal = () => {
               </ListboxItem>
             ))}
           </Listbox>
+          <AddressSelect />
           <div className="flex flex-col w-full gap-[1em] px-4">
             <span className="ml-[10px] tracking-[1px]">
               Итого: <b>{cartData.total_price} ₽</b>
             </span>
-            <Button size="lg" color="primary" onClick={() => closeNewOrderModal()}>
+            <Button
+              size="lg"
+              color="primary"
+              onClick={async () => {
+                await makeOrderFromCart();
+                setCart(await getCart());
+                setCustomerOrders(await getCustomerOrders());
+                closeNewOrderModal();
+              }}
+            >
               Оформить заказ
             </Button>
           </div>

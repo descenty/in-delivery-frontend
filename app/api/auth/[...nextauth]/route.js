@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
 import jwt_decode from "jwt-decode";
 import { encrypt } from "@/utils/encryption";
+import { signOut } from "next-auth/react";
 
 // this will refresh an expired access token, when needed
 async function refreshAccessToken(token) {
