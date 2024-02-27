@@ -63,7 +63,7 @@ const Cart = ({ cartData }: { cartData?: CartData }) => {
                           <Button
                             isIconOnly
                             size="sm"
-                            startContent={<CloseIcon />}
+                            startContent={<CloseIcon className="text-default-600" />}
                             className="bg-transparent"
                             onClick={async () => {
                               setIsLoading(true);

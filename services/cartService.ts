@@ -1,10 +1,5 @@
 import { AddToCartRequest, CartData } from "@/schemas/cart";
-import { Category } from "@/schemas/category";
-import { Product } from "@/schemas/product";
 import axiosInstance from "@/utils/axiosInstance";
-import { getAccessToken } from "@/utils/sessionTokenAccessor";
-import axios from "axios";
-import { getSession } from "next-auth/react";
 
 export const getCart = async (): Promise<CartData> => (await axiosInstance()).get("/cart").then((res) => res.data);
 
