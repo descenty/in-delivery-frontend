@@ -1,9 +1,10 @@
 "use client";
-import { Avatar, Badge, Listbox, ListboxItem, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
+import { Avatar, Badge, Chip, Listbox, ListboxItem, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { useStore } from "effector-react";
 import { $modalOrder, setModalOrder } from "@/stores/orderModal";
 import { ruDate } from "@/utils/localDate";
 import { setModalProduct } from "@/stores/productModalStore";
+import { OrderStatus, orderStatusColor, orderStatusText } from "./static/orderStatus";
 
 const OrderModal = () => {
   const modalOrder = useStore($modalOrder);
@@ -29,9 +30,9 @@ const OrderModal = () => {
             <p>
               Сумма заказа: <b>{modalOrder.total_price} ₽</b>
             </p>
-            <p>
-              Статус: <b>Создан</b>
-            </p>
+            <Chip color={orderStatusColor[modalOrder.status as OrderStatus]}>
+              {orderStatusText[modalOrder.status as OrderStatus]}
+            </Chip>
           </div>
           <h4 className="text-lg font-semibold">Продукты</h4>
           <Listbox variant="flat" aria-label="Listbox menu with sections">

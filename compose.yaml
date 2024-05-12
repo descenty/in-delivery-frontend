@@ -1,6 +1,5 @@
 services:
   app:
     build: .
-    env_file: .env.local
     ports:
       - 3000:3000

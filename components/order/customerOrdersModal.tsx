@@ -5,9 +5,10 @@ import { $isCustomerOrdersModalOpened, closeCustomerOrdersModal } from "@/stores
 import { $customerOrders, setCustomerOrders } from "@/stores/customerOrdersStore";
 import { setModalOrder } from "@/stores/orderModal";
 import { ruDate } from "@/utils/localDate";
-import { Listbox, ListboxItem, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
+import { Chip, Listbox, ListboxItem, Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { useStore } from "effector-react";
 import { useEffect } from "react";
+import { OrderStatus, orderStatusColor, orderStatusText } from "./static/orderStatus";
 
 const CustomerOrdersModal = () => {
   const isCustomerOrdersModalOpened = useStore($isCustomerOrdersModalOpened);
@@ -36,15 +37,21 @@ const CustomerOrdersModal = () => {
               {customerOrders.map((order: Order) => (
                 <ListboxItem
                   key={order.id}
-                  className="flex flex-row items-center gap-3"
+                  className="flex flex-row items-center justify-between gap-3"
                   textValue={`Заказ от ${order.created_at}`}
                   onClick={() => setModalOrder(order)}
-                >
-                  <div className="flex flex-col gap-0">
-                    <p className="whitespace-break-spaces text-base">{`Заказ от ${ruDate(order.created_at)}`}</p>
-                    <p className="font-semibold text-[16px] text-gray-700">{order.total_price} ₽</p>
-                  </div>
-                </ListboxItem>
+                  startContent={
+                    <div className="flex flex-row w-full items-center justify-between">
+                      <div className="flex flex-col gap-0">
+                        <p className="whitespace-break-spaces text-base">{`Заказ от ${ruDate(order.created_at)}`}</p>
+                        <p className="font-semibold text-[16px] text-gray-700">{order.total_price} ₽</p>
+                      </div>
+                      <Chip color={orderStatusColor[order.status as OrderStatus]}>
+                        {orderStatusText[order.status as OrderStatus]}
+                      </Chip>
+                    </div>
+                  }
+                />
               ))}
             </Listbox>
           )}
