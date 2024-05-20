@@ -24,8 +24,8 @@ const Map = ({ address, className }: { address?: Address; className?: string }) 
       >
         <DynamicMapComponent address={address} />
         <TileLayer
-          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-          url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={[address.latitude, address.longitude]}>
           <Popup>{address.name}</Popup>
